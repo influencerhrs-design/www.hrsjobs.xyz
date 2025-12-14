@@ -37,6 +37,74 @@ const jobData = [
         keywords: "marketing, specialist, digital, content, seo, hybrid",
         applyLink: "https://example.com/apply/globalcommerce3"
     }
+];
+
+const jobContainer = document.getElementById('jobContainer');
+const searchInput = document.getElementById('searchInput');
+const noJobsMessage = document.getElementById('noJobsMessage');
+
+// --- 2. RENDER JOB CARDS ---
+function renderJobs(jobs) {
+    jobContainer.innerHTML = ''; 
+
+    if (jobs.length === 0) {
+        noJobsMessage.style.display = 'block';
+        return;
+    } else {
+        noJobsMessage.style.display = 'none';
+    }
+
+    jobs.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+
+        jobCard.innerHTML = `
+            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
+            <h3>${job.title}</h3>
+            <p class="company-name">${job.company}</p>
+            <div class="job-meta">
+                <span class="meta-tag">${job.location}</span>
+                <span class="meta-tag">${job.experience}</span>
+                <span class="meta-tag salary-tag">${job.salary}</span>
+            </div>
+            <div class="apply-link">
+                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
+            </div>
+        `;
+        jobContainer.appendChild(jobCard);
+    });
+}
+
+// --- 3. FILTER JOBS (Search Functionality) ---
+function filterJobs() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    if (!searchTerm) {
+        renderJobs(jobData); 
+        return;
+    }
+
+    const filteredJobs = jobData.filter(job => {
+        return job.title.toLowerCase().includes(searchTerm) ||
+               job.company.toLowerCase().includes(searchTerm) ||
+               job.location.toLowerCase().includes(searchTerm) ||
+               job.keywords.toLowerCase().includes(searchTerm);
+    });
+
+    renderJobs(filteredJobs);
+}
+
+// --- 4. INITIALIZATION ---
+// Load all jobs when the page first loads
+document.addEventListener('DOMContentLoaded', () => {
+    renderJobs(jobData);
+    
+    // Add event listener for real-time search (optional, for better UX)
+    searchInput.addEventListener('input', filterJobs);
+});
+        keywords: "marketing, specialist, digital, content, seo, hybrid",
+        applyLink: "https://example.com/apply/globalcommerce3"
+    }
     // Add more jobs here after receiving posting requests via email
 ];
 
