@@ -9,31 +9,122 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="dark-theme"> 
-    
-    <header>
-        <div class="logo">
-            <span class="logo-hrs">hrs.</span><span class="logo-jobs">jobs</span>
-        </div>
-        <nav>
-            <a href="#jobs">Jobs</a>
-            <a href="#recruiters">For Recruiters</a>
-            <a href="mailto:hrs.team.a@gmail.com" class="btn-primary">Post a Job (Free)</a>
-        </nav>
-    </header>
 
-    <section class="hero-section">
-        <h1>Find Your Next Great Opportunity.</h1>
-        <p>hrs.jobs connects top talent with companies, completely free for recruiters.</p>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search by job title, company, or keyword...">
-            <button onclick="filterJobs()">Search</button>
-        </div>
-    </section>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="w3_close()">&times;</a>
+        
+        <h3 class="sidebar-heading">Navigation</h3>
+        <a href="#jobs" class="sidebar-item" onclick="w3_close()">Job Listings</a>
+        <a href="#recruiters" class="sidebar-item" onclick="w3_close()">For Recruiters</a>
+        <a href="#" class="sidebar-item" onclick="w3_close()">About Us</a>
+        <a href="#" class="sidebar-item" onclick="w3_close()">Contact</a>
+        <a href="mailto:hrs.team.a@gmail.com" class="sidebar-item btn-sidebar-cta" onclick="w3_close()">Post a Job (Free)</a>
 
-    <section id="jobs" class="job-listings">
-        <h2>Latest Job Openings</h2>
-        <div id="jobContainer" class="job-container">
+        <h3 class="sidebar-heading mt-20">Resources</h3>
+        <a href="#" class="sidebar-item" onclick="w3_close()">Privacy Policy</a>
+        <a href="#" class="sidebar-item" onclick="w3_close()">Terms of Service</a>
+    </div>
+
+    <div id="main-content" class="main-content">
+        
+        <header>
+            <div class="logo">
+                <span class="logo-hrs">hrs.</span><span class="logo-jobs">jobs</span>
             </div>
+            <nav class="desktop-nav">
+                <a href="#jobs">Jobs</a>
+                <a href="#recruiters">For Recruiters</a>
+                <a href="mailto:hrs.team.a@gmail.com" class="btn-primary">Post a Job (Free)</a>
+            </nav>
+            <button class="openbtn" onclick="w3_open()">&#9776;</button>
+        </header>
+
+        <section class="hero-section">
+            <h1>Find Your Next Great Opportunity.</h1>
+            <p>hrs.jobs connects top talent with companies, completely free for recruiters.</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by job title, company, or keyword...">
+                <button onclick="filterJobs()">Search</button>
+            </div>
+        </section>
+
+        <section id="jobs" class="job-listings">
+            <h2>Latest Job Openings</h2>
+            <div id="jobContainer" class="job-container"></div>
+            <p class="no-jobs" id="noJobsMessage" style="display:none;">No jobs match your search. Try a different keyword!</p>
+        </section>
+
+        <section id="recruiters" class="recruiters-section">
+            <div class="container">
+                <h2>Hiring Made Simple and Free.</h2>
+                <p>Post your job to a global talent pool without any subscription or fee. We keep the process simple and focused.</p>
+                <a href="mailto:hrs.team.a@gmail.com?subject=JOB%20POSTING%20REQUEST%20|%20[Company%20Name]%20|%20[Job%20Title]" class="btn-secondary">
+                    Email Your Free Job Posting Request
+                </a>
+                <p class="small-text">Send details to: **hrs.team.a@gmail.com**</p>
+            </div>
+        </section>
+
+        <footer class="dark-footer">
+            <div class="container footer-grid">
+                
+                <div class="footer-col subscribe-section">
+                    <h3>Subscribe to hrs.jobs</h3>
+                    <p>Get the latest job updates weekly!</p>
+                    <form action="#" method="POST" class="subscribe-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-subscribe">SUBSCRIBE</button>
+                    </form>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>For Recruiters</h3>
+                    <ul>
+                        <li><a href="mailto:hrs.team.a@gmail.com">Post a Job (FREE)</a></li>
+                        <li><a href="#">Recruiter Login (Coming Soon)</a></li>
+                        <li><a href="#">Hiring Advice</a></li>
+                    </ul>
+                    <h3 class="mt-20">Job Seeker Content</h3>
+                     <ul>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">Interview Tips</a></li>
+                        <li><a href="#">Podcast (Coming Soon)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col social-col">
+                    <h3>Follow</h3>
+                    <div class="social-icons">
+                        <a href="[Link to Instagram Profile]" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="[Link to LinkedIn Profile]" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="[Link to WhatsApp Group/Business]" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="[Link to YouTube Channel]" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="mailto:hrs.team.a@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="footer-disclaimer container">
+                <hr>
+                <p>hrs.jobs is a free job posting platform. We only list jobs submitted directly by companies via email and are not affiliated with, nor do we endorse, any specific company listed. All company trademarks and logos are the property of their respective owners.</p>
+            </div>
+        </footer>
+
+    </div> <script src="script.js"></script>
+</body>
+</html>
         <p class="no-jobs" id="noJobsMessage" style="display:none;">No jobs match your search. Try a different keyword!</p>
     </section>
 
