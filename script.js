@@ -1,11 +1,12 @@
-// --- 1. SAMPLE JOB DATA ---
-// In a real application, this data would come from a server API call.
+// --- 1. SAMPLE JOB DATA (Kept from previous steps) ---
+// ... (Job data array) ...
+
 const jobData = [
     {
         id: 1,
         title: "Senior Full-Stack Developer",
         company: "TechSolutions Inc.",
-        logo: "assets/logos/techsolutions.png", // Placeholder image path
+        logo: "assets/logos/techsolutions.png", 
         experience: "Experienced (5+ yrs)",
         salary: "₹18 LPA - ₹25 LPA",
         location: "Bangalore, India",
@@ -34,6 +35,90 @@ const jobData = [
         salary: "Confidential",
         location: "Mumbai, India / Hybrid",
         fresher: false,
+        keywords: "marketing, specialist, digital, content, seo, hybrid",
+        applyLink: "https://example.com/apply/globalcommerce3"
+    }
+];
+
+const jobContainer = document.getElementById('jobContainer');
+const searchInput = document.getElementById('searchInput');
+const noJobsMessage = document.getElementById('noJobsMessage');
+
+// --- 2. RENDER JOB CARDS & FILTER JOBS (Kept from previous steps) ---
+function renderJobs(jobs) { /* ... (function body) ... */ }
+function filterJobs() { /* ... (function body) ... */ }
+document.addEventListener('DOMContentLoaded', () => { /* ... (initialization) ... */ });
+
+
+// --- 3. SIDEBAR FUNCTIONS (The new addition based on your request) ---
+
+function w3_open() {
+  const sidebar = document.getElementById("mySidebar");
+  const mainContent = document.getElementById("main-content");
+  
+  // Set sidebar width based on screen size
+  if (window.innerWidth <= 768) {
+    sidebar.style.width = "100%"; // Full width on mobile
+    mainContent.style.marginLeft = "0"; // Don't push content on mobile
+  } else {
+    sidebar.style.width = "300px"; // Fixed width on desktop
+    mainContent.style.marginLeft = "300px"; // Push main content
+  }
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main-content").style.marginLeft= "0";
+}
+
+// Re-defining the job functions here for the final cohesive script file
+function renderJobs(jobs) {
+    jobContainer.innerHTML = ''; 
+    if (jobs.length === 0) {
+        noJobsMessage.style.display = 'block';
+        return;
+    } else {
+        noJobsMessage.style.display = 'none';
+    }
+    jobs.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+        jobCard.innerHTML = `
+            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
+            <h3>${job.title}</h3>
+            <p class="company-name">${job.company}</p>
+            <div class="job-meta">
+                <span class="meta-tag">${job.location}</span>
+                <span class="meta-tag">${job.experience}</span>
+                <span class="meta-tag salary-tag">${job.salary}</span>
+            </div>
+            <div class="apply-link">
+                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
+            </div>
+        `;
+        jobContainer.appendChild(jobCard);
+    });
+}
+
+function filterJobs() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    if (!searchTerm) {
+        renderJobs(jobData); 
+        return;
+    }
+    const filteredJobs = jobData.filter(job => {
+        return job.title.toLowerCase().includes(searchTerm) ||
+               job.company.toLowerCase().includes(searchTerm) ||
+               job.location.toLowerCase().includes(searchTerm) ||
+               job.keywords.toLowerCase().includes(searchTerm);
+    });
+    renderJobs(filteredJobs);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderJobs(jobData);
+    searchInput.addEventListener('input', filterJobs);
+});
         keywords: "marketing, specialist, digital, content, seo, hybrid",
         applyLink: "https://example.com/apply/globalcommerce3"
     }
