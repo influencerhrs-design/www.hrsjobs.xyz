@@ -1,6 +1,4 @@
-// --- 1. SAMPLE JOB DATA (Kept from previous steps) ---
-// ... (Job data array) ...
-
+// --- 1. SAMPLE JOB DATA ---
 const jobData = [
     {
         id: 1,
@@ -34,6 +32,123 @@ const jobData = [
         experience: "Experienced (2-4 yrs)",
         salary: "Confidential",
         location: "Mumbai, India / Hybrid",
+        fresher: false,
+        keywords: "marketing, specialist, digital, content, seo, hybrid",
+        applyLink: "https://example.com/apply/globalcommerce3"
+    }
+];
+
+// Elements that might only exist on the index.html page
+const jobContainer = document.getElementById('jobContainer');
+const searchInput = document.getElementById('searchInput');
+const noJobsMessage = document.getElementById('noJobsMessage');
+
+// --- 2. SIDEBAR FUNCTIONS ---
+
+function w3_open() {
+  const sidebar = document.getElementById("mySidebar");
+  const mainContent = document.getElementById("main-content");
+  const openNav = document.getElementById("openNav");
+  
+  sidebar.style.display = "block";
+
+  if (window.innerWidth <= 768) {
+    sidebar.style.width = "100%"; 
+    mainContent.style.marginLeft = "0";
+  } else {
+    sidebar.style.width = "300px"; 
+    mainContent.style.marginLeft = "300px";
+  }
+  
+  if (openNav) {
+    openNav.style.display = 'none';
+  }
+}
+
+function w3_close() {
+  const sidebar = document.getElementById("mySidebar");
+  const mainContent = document.getElementById("main-content");
+  const openNav = document.getElementById("openNav");
+
+  sidebar.style.width = "0";
+  mainContent.style.marginLeft= "0";
+  
+  setTimeout(() => {
+    sidebar.style.display = "none";
+  }, 500); // Matches the 0.5s transition in CSS
+  
+  if (openNav) {
+    openNav.style.display = 'block';
+  }
+}
+
+// --- 3. JOB LISTING FUNCTIONS (Only run on index.html) ---
+
+function renderJobs(jobs) {
+    if (!jobContainer) return; // Prevent error on other pages
+
+    jobContainer.innerHTML = ''; 
+    if (jobs.length === 0) {
+        if (noJobsMessage) noJobsMessage.style.display = 'block';
+        return;
+    } else {
+        if (noJobsMessage) noJobsMessage.style.display = 'none';
+    }
+    jobs.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('job-card');
+        jobCard.innerHTML = `
+            <img src="${job.logo}" alt="${job.company} Logo" class="company-logo" onerror="this.onerror=null;this.src='assets/logos/default.png';">
+            <h3>${job.title}</h3>
+            <p class="company-name">${job.company}</p>
+            <div class="job-meta">
+                <span class="meta-tag">${job.location}</span>
+                <span class="meta-tag">${job.experience}</span>
+                <span class="meta-tag salary-tag">${job.salary}</span>
+            </div>
+            <div class="apply-link">
+                <a href="${job.applyLink}" target="_blank" rel="noopener noreferrer">Apply Now &rarr;</a>
+            </div>
+        `;
+        jobContainer.appendChild(jobCard);
+    });
+}
+
+function filterJobs() {
+    if (!searchInput) return; // Prevent error on other pages
+
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    if (!searchTerm) {
+        renderJobs(jobData); 
+        return;
+    }
+    const filteredJobs = jobData.filter(job => {
+        return job.title.toLowerCase().includes(searchTerm) ||
+               job.company.toLowerCase().includes(searchTerm) ||
+               job.location.toLowerCase().includes(searchTerm) ||
+               job.keywords.toLowerCase().includes(searchTerm);
+    });
+    renderJobs(filteredJobs);
+}
+
+// --- 4. INITIALIZATION ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initial sidebar setup 
+    const sidebar = document.getElementById("mySidebar");
+    if (sidebar) {
+      sidebar.style.display = "none";
+    }
+    
+    // 2. Job filtering setup (only runs on the home page)
+    if (jobContainer) {
+      renderJobs(jobData);
+    }
+    
+    if (searchInput) {
+      searchInput.addEventListener('input', filterJobs);
+    }
+});
         fresher: false,
         keywords: "marketing, specialist, digital, content, seo, hybrid",
         applyLink: "https://example.com/apply/globalcommerce3"
