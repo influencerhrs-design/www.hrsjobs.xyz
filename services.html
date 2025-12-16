@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Our Services | JobsPortal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px; background-color: #121212; color: white;}
+    
+    .theme-yellow { color: #FFD833 !important; }
+    .bg-yellow { background-color: #FFD833 !important; color: black !important; }
+    .w3-sidebar { background-color: #FFD833 !important; color: black !important; font-weight:bold; }
+    
+    .service-box { background-color: #1e1e1e; border: 1px solid #333; padding: 30px; border-radius: 12px; height: 100%; }
+    .service-icon { font-size: 50px; color: #FFD833; margin-bottom: 15px; }
+</style>
+</head>
+<body>
+
+<nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Jobs<br>Portal</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="index.html" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="index.html#jobs" class="w3-bar-item w3-button w3-hover-white">Browse Jobs</a> 
+    <a href="post-job.html" class="w3-bar-item w3-button w3-hover-white">Post a Job</a> 
+    <a href="#" class="w3-bar-item w3-button w3-hover-white theme-yellow">Our Services</a> 
+    <a href="index.html#contact" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+  </div>
+</nav>
+
+<header class="w3-container w3-top w3-hide-large bg-yellow w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button bg-yellow w3-margin-right" onclick="w3_open()">☰</a>
+  <span>JobsPortal</span>
+</header>
+
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <div class="w3-container" style="margin-top:80px">
+    <h1 class="w3-jumbo"><b>Our</b></h1>
+    <h1 class="w3-xxxlarge theme-yellow"><b>Services.</b></h1>
+    <hr style="width:50px;border:5px solid #FFD833" class="w3-round">
+    <p>We simplify the recruitment process by removing the middleman.</p>
+  </div>
+
+  <div class="w3-row-padding w3-margin-top">
+    
+    <div class="w3-half w3-margin-bottom">
+      <div class="service-box">
+        <i class="fa fa-bullhorn service-icon"></i>
+        <h3>Free Job Posting</h3>
+        <p>Recruiters can post job openings without hidden costs. Reach thousands of local candidates instantly through our streamlined submission process.</p>
+      </div>
+    </div>
+
+    <div class="w3-half w3-margin-bottom">
+      <div class="service-box">
+        <i class="fa fa-whatsapp service-icon"></i>
+        <h3>Direct WhatsApp Hiring</h3>
+        <p>Skip the long email chains. Our unique "Click-to-Chat" feature allows job seekers to start a professional conversation with you instantly on WhatsApp.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="w3-row-padding">
+    
+    <div class="w3-half w3-margin-bottom">
+      <div class="service-box">
+        <i class="fa fa-check-square-o service-icon"></i>
+        <h3>Manual Job Verification</h3>
+        <p>To ensure high-quality listings and prevent scams, every job post is manually reviewed and approved by our admin team before going live.</p>
+      </div>
+    </div>
+
+    <div class="w3-half w3-margin-bottom">
+      <div class="service-box">
+        <i class="fa fa-users service-icon"></i>
+        <h3>No Account Required</h3>
+        <p>We believe in speed. Candidates don't need to waste time creating profiles or uploading CVs to a database—they apply directly to you.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="w3-container w3-padding-64 w3-center">
+      <h2 class="theme-yellow">Ready to grow your team?</h2>
+      <p>Join hundreds of local businesses hiring via JobsPortal.</p>
+      <a href="post-job.html" class="w3-button bg-yellow w3-padding-large w3-round w3-margin-top">Post Your Job Now</a>
+  </div>
+
+</div>
+
+<script>
+function w3_open() { document.getElementById("mySidebar").style.display = "block"; }
+function w3_close() { document.getElementById("mySidebar").style.display = "none"; }
+</script>
+
+</body>
+</html>
