@@ -1,79 +1,60 @@
-# hrs.jobs - Free Job Board and Job Posting Platform
+# 🎯 Simple Job Portal (Dark & Yellow Edition)
 
-A modern, dark-themed, and SEO-optimized multi-page website serving as a job board with a focus on free job posting for recruiters and a clean job search experience for candidates.
+A lightweight, PHP-based job posting system with manual admin approval. No SQL database required—uses a simple JSON flat-file system.
 
-## 🌟 Features
+## 🎨 Theme Colors
+* **Background:** `#121212` (Dark)
+* **Primary Accent:** `#FFD833` (Yellow)
+* **Text:** `#FFFFFF` (White)
 
-* **Multi-Page Structure:** Includes Home (`index.html`), About (`about.html`), Contact (`contact.html`), and FAQs (`faqs.html`).
-* **Modern Design:** Sleek, dark-themed aesthetic using pure CSS.
-* **Fully Responsive:** Optimized for desktop, tablet, and mobile devices (includes a responsive collapsible sidebar).
-* **Job Filtering:** Real-time client-side job search functionality on the homepage.
-* **SEO Optimized:** Aggressive keyword implementation across all pages to target "Free Job Posting," "Job Board," and "Remote Jobs."
-* **Clean Codebase:** Minimized redundant code, with all JavaScript functions consolidated into `script.js`.
+---
 
 ## 📂 Project Structure
+* `index.html`: The main job board. Fetches and displays only approved jobs.
+* `post-job.html`: The submission form for recruiters.
+* `style.css`: The UI/UX styling (Dark theme with yellow highlights).
+* `script.js`: (Optional) Logic for handling the frontend fetch requests.
+* `submit-job.php`: The backend engine. Processes form data, saves to JSON, and emails the admin.
+* `jobs.json`: The "database" where all job listings are stored.
 
-hrs.jobs/
-├── index.html          # Homepage (Job Listings & Search)
-├── about.html          # About Us Page
-├── contact.html        # Contact Page (Email links)
-├── faqs.html           # Frequently Asked Questions (Accordion)
-├── styles.css          # Primary CSS styles
-├── script.js           # JavaScript for job filtering and sidebar functionality
-├── README.md           # This file
-└── assets/             # Directory for images (logos, etc.)
-└── logos/
-└── *.png       # Placeholder company logos
-## 🛠️ Setup and Installation
+---
 
-This is a static HTML/CSS/JS website and requires no backend setup.
+## ⚙️ How It Works
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone [Your Repository URL]
-    ```
-2.  **Navigate to the Directory:**
-    ```bash
-    cd hrs.jobs
-    ```
-3.  **Run Locally:**
-    Open the `index.html` file directly in any modern web browser (Chrome, Firefox, Edge).
+### 1. For Recruiters
+* Recruiters visit `/post-job.html`.
+* They fill in details (Company, Title, WhatsApp, Deadline, etc.).
+* Upon submission, the job is saved with `"approved": false`.
 
-## 💡 Customization Guide
+### 2. For Admin (You)
+* You receive an email at **raf@gmail.com** whenever a new job is submitted.
+* **To Approve:**
+    1. Open `jobs.json`.
+    2. Find the new entry (usually at the bottom).
+    3. Change `"approved": false` to `"approved": true`.
+    4. Save the file.
 
-### 1. Job Data Management (`script.js`)
+### 3. For Job Seekers
+* Only jobs marked `true` appear on `index.html`.
+* **Apply via Email:** Opens the user's default mail app with the company's email pre-filled.
+* **Apply via WhatsApp:** Uses a `wa.me` link to open a direct chat with the recruiter.
 
-To add new job listings, edit the `jobData` array at the top of `script.js`:
+---
 
-```javascript
-const jobData = [
-    // Add your new job object here:
-    {
-        id: 4,
-        title: "New Role Title",
-        company: "New Company Name",
-        logo: "assets/logos/new_logo.png", // Must exist in the assets/logos folder
-        experience: "Mid-Level (2-4 yrs)",
-        salary: "Negotiable",
-        location: "City, Country / Remote",
-        fresher: false,
-        keywords: "backend, python, django, remote",
-        applyLink: "[https://yourcompany.com/application-link](https://yourcompany.com/application-link)"
-    },
-    // ... existing jobs
-];
+## 🚀 Deployment Instructions
 
-2. Styling (styles.css)
-Colors and themes can be quickly modified by changing the variables in the :root block:
-:root {
-    --color-primary: #FFD833; /* Change this for main accent color */
-    --color-background-dark: #111111; /* Change this for main background */
-    --color-subscribe-cta: #E74C3C; /* Change this for the red CTA button */
-    /* ... other variables */
-}
+1.  **Hosting:** Upload all files to a server that supports **PHP 7.0+**.
+2.  **Permissions:** Ensure the server has "Write" permissions for `jobs.json` so the PHP script can update the file.
+3.  **Email:** Some free hosting providers disable the `mail()` function. If you don't receive emails, check your hosting's "Email Functions" settings.
 
-3. Contact Emails
-Ensure you update the placeholder email links in all HTML files:
- * mailto:hrs.team.a@gmail.com (Used for job posting requests).
- * [Your_Partnership_Email] (In contact.html).
- * [Your_Support_Email] (In contact.html).
+---
+
+## 🛠 Maintenance
+* **Delete a Job:** Simply open `jobs.json` and delete the specific block `{...}` associated with that job.
+* **Edit a Job:** You can manually fix typos or change deadlines directly inside the `jobs.json` file.
+
+---
+
+## 🚫 Limitations
+* No password protection for the `jobs.json` file (Admin should manage this via FTP/Control Panel).
+* File-based storage is best for small to medium sites (up to a few hundred jobs).
